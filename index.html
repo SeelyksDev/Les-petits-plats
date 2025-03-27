@@ -1,13 +1,30 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/public/les-petits-plats-svg.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Les petits plats</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/public/les-petits-plats-svg.svg"
+        />
+        <link rel="stylesheet" href="/src/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Les petits plats</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="logo">
+                    <img src="/public/assets/logo.svg" alt="logo les petits plats" />
+                </div>
+            </nav>
+            <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES 
+              DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
+              <form class="search-wrapper">
+                <input class="search-field" type="text" placeholder="Rechercher une recette, un ingrédient, ...">
+                <button class="search-btn"></button>
+              </form>
+        </header>
+        <main></main>
+    </body>
 </html>
