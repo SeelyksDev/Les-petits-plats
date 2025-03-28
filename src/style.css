@@ -1,12 +1,12 @@
 @font-face {
     font-family: "Anton";
-    src: url("/public/assets/fonts/Anton/Anton-Regular.woff2") format("woff2");
+    src: url("/assets/fonts/Anton/Anton-Regular.woff2") format("woff2");
     font-weight: 400;
 }
 
 @font-face {
     font-family: "Manrope";
-    src: url("/public/assets/fonts/Manrope/Manrope-Regular.woff2")
+    src: url("/assets/fonts/Manrope/Manrope-Regular.woff2")
         format("woff2");
     font-weight: 400;
     font-style: normal;
@@ -14,7 +14,7 @@
 
 @font-face {
     font-family: "Manrope";
-    src: url("/public/assets/fonts/Manrope/Manrope-Medium.woff2")
+    src: url("/assets/fonts/Manrope/Manrope-Medium.woff2")
         format("woff2");
     font-weight: 500;
     font-style: normal;
@@ -22,7 +22,7 @@
 
 @font-face {
     font-family: "Manrope";
-    src: url("/public/assets/fonts/Manrope/Manrope-Bold.woff2") format("woff2");
+    src: url("/assets/fonts/Manrope/Manrope-Bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
 }
@@ -41,7 +41,7 @@
     box-sizing: border-box;
 }
 
-ul,
+li,
 summary {
     list-style: none;
 }
@@ -56,7 +56,7 @@ button {
 }
 
 #header {
-    background-image: url(/public/assets/header-bg.png);
+    background-image: url("/assets/header-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 667px;
@@ -105,17 +105,17 @@ h1 {
         top: 50%;
         transform: translateY(-50%);
         background-color: black;
-        background-image: url("/public/assets/search-icon.svg");
-        background-repeat: no-repeat;
-        background-position: center;
         width: 51px;
         height: 52px;
         border-radius: 10px;
         transition: background-color 0.4s ease-in-out;
     }
-
     .search-btn:hover {
         background-color: var(--main-color);
+
+        .search-btn-img {
+            filter: brightness(0) saturate(100%)
+        }
     }
 }
 
@@ -164,6 +164,10 @@ main {
     }
 
     .recipes-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 380px));
+        justify-content: space-between;
+        row-gap: 66px;
         .recipe-card {
             width: 100%;
             max-width: 380px;
