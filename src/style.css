@@ -1,107 +1,164 @@
 @font-face {
-  font-family: 'Anton';
-  src: url('/public/assets/fonts/Anton/Anton-Regular.woff2') format('woff2');
-  font-weight: 400;
+    font-family: "Anton";
+    src: url("/public/assets/fonts/Anton/Anton-Regular.woff2") format("woff2");
+    font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Manrope';
-  src: url('/public/assets/fonts/Manrope/Manrope-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Manrope";
+    src: url("/public/assets/fonts/Manrope/Manrope-Regular.woff2")
+        format("woff2");
+    font-weight: 400;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Manrope';
-  src: url('/public/assets/fonts/Manrope/Manrope-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
+    font-family: "Manrope";
+    src: url("/public/assets/fonts/Manrope/Manrope-Medium.woff2")
+        format("woff2");
+    font-weight: 500;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Manrope';
-  src: url('/public/assets/fonts/Manrope/Manrope-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    font-family: "Manrope";
+    src: url("/public/assets/fonts/Manrope/Manrope-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
 }
 
 :root {
-  --main-color: #FFD15B;
+    --main-color: #ffd15b;
+    --background-main: #ededed;
+    --anton-font: "Anton", sans-serif;
+    --manrope-font: "Manrope", sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul,
+summary {
+    list-style: none;
+}
+
+summary {
+    cursor: pointer;
 }
 
 button {
-  cursor: pointer;
-  border: none;
+    cursor: pointer;
+    border: none;
 }
 
 header {
-  background-image: url(/public/assets/header-bg.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 667px;
-  font-size: 1.375rem;
+    background-image: url(/public/assets/header-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 667px;
+    font-size: 1.37rem;
 }
 
 .logo {
-  padding: 51px 0 0 69px;
-  margin-bottom: 168px;
+    padding: 51px 0 0 69px;
+    margin-bottom: 168px;
 }
 
 h1 {
-  color: var(--main-color);
-  text-align: center;
-  font-family: 'Anton', sans-serif;
-  line-height: normal;
-  width: 100%;
-  max-width: 890px;
-  margin: 0 auto 29px auto;
-  text-wrap: balance;
-  letter-spacing: 1px;
+    color: var(--main-color);
+    text-align: center;
+    font-family: var(--anton-font);
+    line-height: normal;
+    width: 100%;
+    max-width: 890px;
+    margin: 0 auto 29px auto;
+    text-wrap: balance;
+    letter-spacing: 1px;
 }
 
 .search-wrapper {
-  width: 100%;
-  max-width: 954px;
-  margin: 0 auto;
-  position: relative;
-
-  .search-field {
     width: 100%;
-    height: 72px;
-    border: none;
-    border-radius: 11px;
-    padding: 24px 0 26px 35px;
-    font-family: 'Manrope';
-  }
+    max-width: 954px;
+    margin: 0 auto;
+    position: relative;
 
-  .search-field::placeholder {
-    font-size: 1rem;
-  }
+    .search-field {
+        width: 100%;
+        height: 72px;
+        border: none;
+        border-radius: 11px;
+        padding: 24px 0 26px 35px;
+        font-family: var(--manrope-font);
+    }
 
-  .search-btn {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: black;
-    background-image: url('/public/assets/search-icon.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 51px;
-    height: 52px;
-    border-radius: 10px;
-    transition: background-color 0.4s ease-in-out;
-  }
+    .search-field::placeholder {
+        font-size: 1rem;
+    }
 
-  .search-btn:hover {
-    background-color: var(--main-color);
-  }
+    .search-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: black;
+        background-image: url("/public/assets/search-icon.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 51px;
+        height: 52px;
+        border-radius: 10px;
+        transition: background-color 0.4s ease-in-out;
+    }
 
+    .search-btn:hover {
+        background-color: var(--main-color);
+    }
 }
 
+main {
+    background-color: var(--background-main);
+    padding: 0 102px;
+
+    .main-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 21px 0 55px 0;
+
+        .sort-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 66px;
+
+            details {
+                padding: 17px 16px 17px 16px;
+                background-color: white;
+                border-radius: 11px;
+
+                summary {
+                    display: flex;
+                    align-items: center;
+                    gap: 63px;
+                    font-family: var(--manrope-font);
+                    font-weight: 500;
+                }
+            }
+
+            .arrow-down {
+              transition: transform 0.3s ease-in-out;
+            }
+
+            details[open] .arrow-down {
+                transform: rotate(-180deg);
+            }
+        }
+
+        .number-recipes {
+            font-family: var(--anton-font);
+            font-size: 1.31rem;
+        }
+    }
+}
