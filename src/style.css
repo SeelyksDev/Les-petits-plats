@@ -30,7 +30,7 @@
 :root {
     --main-color: #ffd15b;
     --background-main: #ededed;
-    --grey-color: #7A7A7A;
+    --grey-color: #7a7a7a;
     --anton-font: "Anton", sans-serif;
     --manrope-font: "Manrope", sans-serif;
 }
@@ -170,6 +170,7 @@ main {
             border-radius: 21px;
             overflow: hidden;
             background-color: white;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
             .recipe-img-wrapper {
                 position: relative;
@@ -204,23 +205,47 @@ main {
                     margin-bottom: 29px;
                 }
 
+                .section-title {
+                    font-family: var(--manrope-font);
+                    font-weight: 700;
+                    font-size: 0.75rem;
+                    color: var(--grey-color);
+                    letter-spacing: 1.44px;
+                    margin-bottom: 15px;
+                }
+
                 .recipe {
-                    .section-title {
-                        font-family: var(--manrope-font);
-                        font-weight: 700;
-                        font-size: 0.75rem;
-                        color: var(--grey-color);
-                        letter-spacing: 1.44px;
-                        margin-bottom: 15px;
-                    }
+                    margin-bottom: 32px;
 
                     .recipe-text {
                         font-family: var(--manrope-font);
                         font-size: 0.875rem;
                     }
                 }
-            }
 
+                .ingredients-section {
+                    .ingredients-wrapper {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 21px;
+
+                        .ingredient {
+                            display: flex;
+                            flex-direction: column;
+                            font-family: var(--manrope-font);
+
+                            .ingredient-name {
+                                font-weight: 500;
+                                font-size: 0.875rem;
+                            }
+
+                            .ingredient-quantity {
+                                color: var(--grey-color);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
