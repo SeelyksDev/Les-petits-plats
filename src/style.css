@@ -135,13 +135,14 @@ main {
             gap: 66px;
 
             details {
-                padding: 17px 16px 17px 16px;
                 background-color: white;
                 border-radius: 11px;
 
                 summary {
                     display: flex;
                     align-items: center;
+                    height: 56px;
+                    padding: 0 16px;
                     gap: 63px;
                     font-family: var(--manrope-font);
                     font-weight: 500;
@@ -165,12 +166,12 @@ main {
 
     .recipes-wrapper {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 380px));
+        grid-template-columns: 1fr 1fr 1fr;
         justify-content: space-between;
         row-gap: 66px;
+        column-gap: 48px;
         .recipe-card {
             width: 100%;
-            max-width: 380px;
             border-radius: 21px;
             overflow: hidden;
             background-color: white;
