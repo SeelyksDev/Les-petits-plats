@@ -99,6 +99,16 @@ h1 {
         font-size: 1rem;
     }
 
+    .cross-btn {
+        display: none;
+        visibility: hidden;
+        position: absolute;
+        right: 85px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: white;
+    }
+
     .search-btn {
         position: absolute;
         right: 10px;
