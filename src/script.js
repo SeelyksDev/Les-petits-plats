@@ -1,4 +1,5 @@
 import { Recipe } from "./Models/Recipe";
+import { handleSearchBar } from "./Components/searchBar";
 
 async function getRecipes() {
     try {
@@ -16,7 +17,7 @@ async function getRecipes() {
 
 function displayRecipes(recipes) {
     const recipesWrapper = document.querySelector(".recipes-wrapper");
-    recipes.forEach(rec => {
+    recipes.forEach((rec) => {
         const recipesTemplate = new Recipe(rec);
         recipesWrapper.appendChild(recipesTemplate.getNewRecipeDOM());
     });
@@ -25,6 +26,9 @@ function displayRecipes(recipes) {
 async function init() {
     const recipes = await getRecipes();
     displayRecipes(recipes);
+    handleSearchBar();
 }
 
 init();
+
+

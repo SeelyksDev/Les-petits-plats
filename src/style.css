@@ -109,6 +109,11 @@ h1 {
         background-color: white;
     }
 
+    .cross-visible {
+        display: flex;
+        visibility: visible;
+    }
+
     .search-btn {
         position: absolute;
         right: 10px;
