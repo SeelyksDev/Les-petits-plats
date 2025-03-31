@@ -11,6 +11,7 @@ export function handleSearchBar() {
             searchField.value.trim().length >= 1
         );
         const recipes = await getRecipes();
+
         filterByLetter(searchField, recipes);
     });
 
@@ -31,25 +32,33 @@ export function isValid(search) {
 
 export function filterByLetter(search, recipes) {
     const recipesWrapper = document.querySelector(".recipes-wrapper");
+    let filteredRecipes = [];
 
     if (isValid(search)) {
-        let sortedRecipes = recipes.filter((el) => {
-            return (
-                el.name.includes(search.value) ||
-                el.description.includes(search.value) ||
-                el.ingredients.some((ingr) =>
-                    ingr.ingredient.includes(search.value)
-                )
-            );
-        });
+        for (let i = 0; i < recipes.length; i++) {
+            let recipeMatches =
+                recipes[i].name.includes(search.value) ||
+                recipes[i].description.includes(search.value);
+
+            for (let j = 0; j < recipes[i].ingredients.length; j++) {
+                if (
+                    recipes[i].ingredients[j].ingredient.includes(search.value)
+                ) {
+                    recipeMatches = true;
+                    break;
+                }
+            }
+
+            if (recipeMatches) {
+                filteredRecipes.push(recipes[i]);
+            }
+        }
 
         recipesWrapper.innerHTML = "";
-        sortedRecipes.forEach((recipe) => {
-            const filteredRecipeTemplate = new Recipe(recipe);
-            recipesWrapper.appendChild(
-                filteredRecipeTemplate.getNewRecipeDOM()
-            );
-        });
+
+        for (let i = 0; i < filteredRecipes.length; i++) {
+            displayRecipes(filteredRecipes[i]);
+        }
     } else {
         recipesWrapper.innerHTML = "";
         displayRecipes(recipes);
