@@ -1,7 +1,7 @@
 import { Recipe } from "./Models/Recipe";
 import { handleSearchBar } from "./Components/searchBar";
 
-async function getRecipes() {
+export async function getRecipes() {
     try {
         const url = "recipes.json";
         const response = await fetch(url);
@@ -9,13 +9,14 @@ async function getRecipes() {
             throw new Error(`reponse : ${response.status}`);
         }
         const data = await response.json();
+        
         return data;
     } catch (err) {
         console.error(err);
     }
 }
 
-function displayRecipes(recipes) {
+ export function displayRecipes(recipes) {
     const numberRecipes = document.querySelector(".number-recipes");
     const recipesWrapper = document.querySelector(".recipes-wrapper");
 
