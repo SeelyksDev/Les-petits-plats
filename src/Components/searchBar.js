@@ -1,4 +1,3 @@
-import { Recipe } from "../Models/Recipe";
 import { displayRecipes, getRecipes } from "../script";
 
 export function handleSearchBar() {
