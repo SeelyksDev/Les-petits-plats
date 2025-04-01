@@ -1,4 +1,3 @@
-import { Recipe } from "../Models/Recipe";
 import { displayRecipes, getRecipes } from "../script";
 
 export function handleSearchBar() {
@@ -33,7 +32,7 @@ export function filterByLetter(search, recipes) {
     const recipesWrapper = document.querySelector(".recipes-wrapper");
 
     if (isValid(search)) {
-        let sortedRecipes = recipes.filter((el) => {
+        let filteredRecipes = recipes.filter((el) => {
             return (
                 el.name.includes(search.value) ||
                 el.description.includes(search.value) ||
@@ -44,11 +43,8 @@ export function filterByLetter(search, recipes) {
         });
 
         recipesWrapper.innerHTML = "";
-        sortedRecipes.forEach((recipe) => {
-            const filteredRecipeTemplate = new Recipe(recipe);
-            recipesWrapper.appendChild(
-                filteredRecipeTemplate.getNewRecipeDOM()
-            );
+        filteredRecipes.forEach((recipe) => {
+           displayRecipes(recipe);
         });
     } else {
         recipesWrapper.innerHTML = "";
