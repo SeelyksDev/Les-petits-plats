@@ -50,24 +50,23 @@ function isValid(search) {
 export function filterByLetter(search, recipes) {
     const recipesWrapper = document.querySelector(".recipes-wrapper");
 
-    if (isValid(search)) {
-        let filteredRecipes = recipes.filter((el) => {
-            return (
-                el.name.includes(search.value) ||
-                el.description.includes(search.value) ||
-                el.ingredients.some((ingr) =>
-                    ingr.ingredient.includes(search.value)
-                )
-            );
-        });
+    let filteredRecipes = recipes.filter((el) => {
+        return (
+            el.name.includes(search.value) ||
+            el.description.includes(search.value) ||
+            el.ingredients.some((ingr) =>
+                ingr.ingredient.includes(search.value)
+            )
+        );
+    });
 
-        recipesWrapper.innerHTML = "";
-        filteredRecipes.forEach((recipe) => {
-           displayRecipes(recipe);
-        });
+    if (filteredRecipes.length === 0) {
+        displayNoContentMsg(search);
     } else {
         recipesWrapper.innerHTML = "";
-        displayRecipes(recipes);
+        filteredRecipes.forEach((recipe) => {
+            displayRecipes(recipe);
+        });
     }
 }
 
@@ -83,4 +82,3 @@ function displayNoContentMsg(search) {
     const numberRecipes = document.querySelector(".number-recipes");
     numberRecipes.textContent = "0 recettes";
 }
-
