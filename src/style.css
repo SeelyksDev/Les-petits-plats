@@ -185,6 +185,7 @@ main {
         justify-content: space-between;
         row-gap: 66px;
         column-gap: 48px;
+
         .recipe-card {
             width: 100%;
             border-radius: 21px;

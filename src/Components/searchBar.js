@@ -18,7 +18,6 @@ export async function handleSearchBar() {
             searchField.value.trim().length >= 1
         );
 
-
         if (searchField.value.trim().length === 0) {
             recipesWrapper.innerHTML = "";
             displayRecipes(recipes);
@@ -40,7 +39,7 @@ export async function handleSearchBar() {
     searchBtn.addEventListener("click", (e) => e.preventDefault());
 }
 
- function isValid(search) {
+function isValid(search) {
     if (search.value.trim().length >= 3) {
         return true;
     } else {
