@@ -49,14 +49,15 @@ function isValid(search) {
 
 export function filterByLetter(search, recipes) {
     let filteredRecipes = [];
+    const searchValue = search.value.toLowerCase();
 
     for (let i = 0; i < recipes.length; i++) {
         let recipeMatches =
-            recipes[i].name.includes(search.value) ||
-            recipes[i].description.includes(search.value);
+            recipes[i].name.toLowerCase().includes(searchValue) ||
+            recipes[i].description.toLowerCase().includes(searchValue);
 
         for (let j = 0; j < recipes[i].ingredients.length; j++) {
-            if (recipes[i].ingredients[j].ingredient.includes(search.value)) {
+            if (recipes[i].ingredients[j].ingredient.toLowerCase().includes(searchValue)) {
                 recipeMatches = true;
                 break;
             }
