@@ -64,9 +64,7 @@ export function filterByLetter(search, recipes) {
         displayNoContentMsg(search);
     } else {
         recipesWrapper.innerHTML = "";
-        filteredRecipes.forEach((recipe) => {
-            displayRecipes(recipe);
-        });
+            displayRecipes(filteredRecipes);
     }
 }
 
