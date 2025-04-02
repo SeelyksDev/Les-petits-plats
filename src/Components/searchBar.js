@@ -49,13 +49,14 @@ function isValid(search) {
 
 export function filterByLetter(search, recipes) {
     const recipesWrapper = document.querySelector(".recipes-wrapper");
+    const searchValue = search.value.toLowerCase();
 
     let filteredRecipes = recipes.filter((el) => {
         return (
-            el.name.includes(search.value) ||
-            el.description.includes(search.value) ||
+            el.name.toLowerCase().includes(searchValue) ||
+            el.description.toLowerCase().includes(searchValue) ||
             el.ingredients.some((ingr) =>
-                ingr.ingredient.includes(search.value)
+                ingr.ingredient.toLowerCase().includes(searchValue)
             )
         );
     });
