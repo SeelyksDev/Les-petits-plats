@@ -268,4 +268,16 @@ main {
             }
         }
     }
+    .recipes-wrapper:has(.no-content-msg){
+        display: flex;
+        .no-content-msg {
+            font-family: var(--manrope-font);
+            font-weight: 500;
+            margin: 0 auto;
+        }
+    }
+}
+
+main:has(.no-content-msg) {
+    padding: 0 102px 100px 102px;
 }
