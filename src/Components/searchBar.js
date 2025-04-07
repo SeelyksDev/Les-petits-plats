@@ -1,4 +1,5 @@
 import { displayRecipes, getRecipes } from "../script";
+import { Tag } from "../Models/Tag";
 const recipesWrapper = document.querySelector(".recipes-wrapper");
 
 async function loadRecipes() {
@@ -57,7 +58,11 @@ export function filterByLetter(search, recipes) {
             recipes[i].description.toLowerCase().includes(searchValue);
 
         for (let j = 0; j < recipes[i].ingredients.length; j++) {
-            if (recipes[i].ingredients[j].ingredient.toLowerCase().includes(searchValue)) {
+            if (
+                recipes[i].ingredients[j].ingredient
+                    .toLowerCase()
+                    .includes(searchValue)
+            ) {
                 recipeMatches = true;
                 break;
             }
@@ -73,6 +78,7 @@ export function filterByLetter(search, recipes) {
     } else {
         recipesWrapper.innerHTML = "";
         displayRecipes(filteredRecipes);
+        getTags(filteredRecipes);
     }
 }
 
@@ -87,4 +93,35 @@ function displayNoContentMsg(search) {
 
     const numberRecipes = document.querySelector(".number-recipes");
     numberRecipes.textContent = "0 recettes";
+}
+
+function getTags(recipes) {
+    const ingredientsContainer = document.querySelector(".ingredients-list");
+    const ustensilsContainer = document.querySelector(".ustensils-list");
+    const appliancesContainer = document.querySelector(".appliances-list");
+
+    let ingredients = new Set([]);
+    let ustensils = new Set([]);
+    let appliances = new Set([]);
+
+    recipes.forEach((recipe) => {
+        recipe.ingredients.forEach((current) =>
+            ingredients.add(current.ingredient)
+        );
+        recipe.ustensils.forEach((current) => ustensils.add(current));
+        appliances.add(recipe.appliance);
+    });
+
+    ingredients.forEach((currentIngr) => {
+        let tagTemplate = new Tag(currentIngr);
+        ingredientsContainer.appendChild(tagTemplate.displayTag());
+    });
+    ustensils.forEach((currentUstensil) => {
+        let tagTemplate = new Tag(currentUstensil);
+        ustensilsContainer.appendChild(tagTemplate.displayTag());
+    });
+    appliances.forEach((currentApplicance) => {
+        let tagTemplate = new Tag(currentApplicance);
+        appliancesContainer.appendChild(tagTemplate.displayTag());
+    });
 }
