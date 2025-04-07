@@ -69,7 +69,7 @@ export function filterByLetter(search, recipes) {
     }
 
     if (filteredRecipes.length === 0) {
-        displayNoContentMsg(search);
+        displayNoContentMsg(search.value);
     } else {
         recipesWrapper.innerHTML = "";
         displayRecipes(filteredRecipes);
@@ -82,7 +82,7 @@ function displayNoContentMsg(search) {
     const p = document.createElement("p");
     p.classList.add("no-content-msg");
     p.textContent = `Aucune recette ne contient
-        « ${search.value} »  vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
+        « ${search} »  vous pouvez chercher « tarte aux pommes », « poisson », etc.`;
     recipesWrapper.appendChild(p);
 
     const numberRecipes = document.querySelector(".number-recipes");
