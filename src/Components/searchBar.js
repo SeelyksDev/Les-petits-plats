@@ -97,9 +97,11 @@ function displayNoContentMsg(search) {
 
 export function getTags(recipes) {
     const ingredientsContainer = document.querySelector(".ingredients-list");
-    ingredientsContainer.innerHTML = "";
     const ustensilsContainer = document.querySelector(".ustensils-list");
     const appliancesContainer = document.querySelector(".appliances-list");
+    ingredientsContainer.innerHTML = "";
+    ustensilsContainer.innerHTML = "";
+    appliancesContainer.innerHTML = "";
 
     let ingredients = new Set([]);
     let ustensils = new Set([]);
