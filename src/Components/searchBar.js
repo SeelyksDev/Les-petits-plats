@@ -95,8 +95,9 @@ function displayNoContentMsg(search) {
     numberRecipes.textContent = "0 recettes";
 }
 
-function getTags(recipes) {
+export function getTags(recipes) {
     const ingredientsContainer = document.querySelector(".ingredients-list");
+    ingredientsContainer.innerHTML = "";
     const ustensilsContainer = document.querySelector(".ustensils-list");
     const appliancesContainer = document.querySelector(".appliances-list");
 
@@ -106,7 +107,7 @@ function getTags(recipes) {
 
     recipes.forEach((recipe) => {
         recipe.ingredients.forEach((current) =>
-            ingredients.add(current.ingredient)
+            ingredients.add(current.ingredient.toLowerCase())
         );
         recipe.ustensils.forEach((current) => ustensils.add(current));
         appliances.add(recipe.appliance);

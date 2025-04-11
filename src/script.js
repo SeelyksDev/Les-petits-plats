@@ -1,5 +1,5 @@
 import { Recipe } from "./Models/Recipe";
-import { handleSearchBar } from "./Components/searchBar";
+import { handleSearchBar, getTags } from "./Components/searchBar";
 
 export async function getRecipes() {
     try {
@@ -9,14 +9,14 @@ export async function getRecipes() {
             throw new Error(`reponse : ${response.status}`);
         }
         const data = await response.json();
-        
+
         return data;
     } catch (err) {
         console.error(err);
     }
 }
 
- export function displayRecipes(recipes) {
+export function displayRecipes(recipes) {
     const numberRecipes = document.querySelector(".number-recipes");
     const recipesWrapper = document.querySelector(".recipes-wrapper");
 
@@ -26,6 +26,7 @@ export async function getRecipes() {
     });
 
     numberRecipes.textContent = `${recipes.length} recettes`;
+    getTags(recipes);
 }
 
 async function init() {
@@ -35,5 +36,3 @@ async function init() {
 }
 
 init();
-
-
