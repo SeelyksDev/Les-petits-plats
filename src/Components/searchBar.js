@@ -1,5 +1,6 @@
 import { displayRecipes, getRecipes } from "../script";
 import { Tag } from "../Models/Tag";
+import { handleTagSearchBar } from "./tagSearchBar";
 const recipesWrapper = document.querySelector(".recipes-wrapper");
 
 async function loadRecipes() {
@@ -40,7 +41,7 @@ export async function handleSearchBar() {
     searchBtn.addEventListener("click", (e) => e.preventDefault());
 }
 
-function isValid(search) {
+export function isValid(search) {
     if (search.value.trim().length >= 3) {
         return true;
     } else {
@@ -127,4 +128,6 @@ export function getTags(recipes) {
         let tagTemplate = new Tag(currentApplicance);
         appliancesContainer.appendChild(tagTemplate.displayTag());
     });
+
+    handleTagSearchBar();
 }

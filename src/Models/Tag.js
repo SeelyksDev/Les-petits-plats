@@ -5,6 +5,7 @@ export class Tag {
 
     displayTag() {
         const li = document.createElement("li");
+        li.setAttribute("data-value", `${this.value}`)
         li.textContent = this.value[0].toUpperCase() + this.value.slice(1).toLowerCase();
 
         return li;
