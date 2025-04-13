@@ -168,7 +168,7 @@ main {
                     position: relative;
                     border: 1px solid #7a7a7a;
                     border-radius: 2px;
-                    margin: 0 16px;
+                    margin: 0 16px 15px 16px;
                     height: 36px;
 
                     .tag-search-input {
@@ -182,10 +182,13 @@ main {
                         position: absolute;
                         top: 50%;
                         right: 35px;
+                        display: flex;
+                        align-items: center;
                         background-color: white;
-                        width: 6px;
-                        height: 6px;
                         transform: translateY(-50%);
+                        height: 6px;
+                        width: 6px;
+
                         img {
                             filter: brightness(48%);
                             width: 100%;
@@ -222,6 +225,7 @@ main {
                         overflow: hidden;
                         text-wrap: nowrap;
                         text-overflow: ellipsis;
+                        cursor: pointer;
                     }
                 }
             }
