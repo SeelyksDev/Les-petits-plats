@@ -235,6 +235,10 @@ main {
                             cursor: pointer;
                         }
 
+                        li:last-child {
+                            padding-bottom: 13px;
+                        }
+
                         li:hover {
                             text-decoration: underline;
                         }

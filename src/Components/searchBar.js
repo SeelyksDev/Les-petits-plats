@@ -100,9 +100,9 @@ export function getTags(recipes) {
     const ingredientsContainer = document.querySelector(".ingredients-list");
     const ustensilsContainer = document.querySelector(".ustensils-list");
     const appliancesContainer = document.querySelector(".appliances-list");
-    ingredientsContainer.innerHTML = "";
-    ustensilsContainer.innerHTML = "";
-    appliancesContainer.innerHTML = "";
+    const list = document.querySelectorAll(".list");
+    
+    list.forEach(el => el.innerHTML = "");
 
     let ingredients = new Set([]);
     let ustensils = new Set([]);

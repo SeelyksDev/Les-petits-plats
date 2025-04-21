@@ -4,7 +4,7 @@ export function handleTagSearchBar() {
     const tagCrossBtn = document.querySelector(".tag-cross-btn");
     const tagSearchInput = document.querySelector(".tag-search-input");
     const tagSearchBtn = document.querySelector(".tag-search-btn");
-    console.log(tagSearchBtn);
+    const list = document.querySelectorAll(".list"); 
 
     tagSearchInput.addEventListener("input", () => {
         tagCrossBtn.classList.toggle(
@@ -13,12 +13,12 @@ export function handleTagSearchBar() {
         );
 
         if (tagSearchInput.value.trim().length === 0) {
-            //recipesWrapper.innerHTML = "";
+            list.forEach((el) => (el.innerHTML = ""));
             //displayRecipes(recipes);
         }
 
         if (isValid(tagSearchInput)) {
-            //filterByLetter(searchField, recipes);
+            //filterByLetter(tagSearchInput.value.toLowerCase(), recipes);
         }
     });
 
@@ -31,4 +31,14 @@ export function handleTagSearchBar() {
     });
 
     tagSearchBtn.addEventListener("click", (e) => e.preventDefault());
+}
+
+function tagFilterByLetter(search, recipes) {
+    let filteredRecipes = [];
+
+    for (let i = 0; i < recipes.length; i++) {
+        if (recipes[i].) {
+            
+        }
+        }
 }
