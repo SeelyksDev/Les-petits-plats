@@ -129,5 +129,5 @@ export function getTags(recipes) {
         appliancesContainer.appendChild(tagTemplate.displayTag());
     });
 
-    handleTagSearchBar();
+    handleTagSearchBar(recipes);
 }

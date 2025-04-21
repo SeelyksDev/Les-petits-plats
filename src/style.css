@@ -142,7 +142,7 @@ main {
         justify-content: space-between;
         padding: 21px 0 55px 0;
 
-        .sort-wrapper {
+        .filters-wrapper {
             display: flex;
             gap: 66px;
 
