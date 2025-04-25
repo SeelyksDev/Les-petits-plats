@@ -104,9 +104,9 @@ export function getTags(recipes) {
     
     list.forEach(el => el.innerHTML = "");
 
-    let ingredients = new Set([]);
-    let ustensils = new Set([]);
-    let appliances = new Set([]);
+    let ingredients = new Set();
+    let ustensils = new Set();
+    let appliances = new Set();
 
     recipes.forEach((recipe) => {
         recipe.ingredients.forEach((current) =>

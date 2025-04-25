@@ -11,6 +11,7 @@ export function handleTagSearchBar(recipes) {
         const tagSearchInput = filter.querySelector(".tag-search-input");
         const tagSearchBtn = filter.querySelector(".tag-search-btn");
         const list = filter.querySelectorAll(".list");
+        let category = tagSearchInput.dataset.category;
 
         tagSearchInput.addEventListener("input", () => {
             tagCrossBtn.classList.toggle(
@@ -20,11 +21,21 @@ export function handleTagSearchBar(recipes) {
 
             if (tagSearchInput.value.trim().length === 0) {
                 list.innerHTML = "";
+                switch (category) {
+                    case "ingredients":
+                        console.log("ingredients");
+                        break;
+                    case "appliances":
+                        console.log("appliances");
+                        break;
+                    case "ustensils":
+                        console.log("ustensils");
+                        break;
+                }
                 getTags(recipes);
             }
 
             if (isValid(tagSearchInput)) {
-                let category = tagSearchInput.dataset.category;
                 tagFilterByLetter(tagSearchInput, recipes, category);
             }
         });
@@ -42,12 +53,12 @@ export function handleTagSearchBar(recipes) {
 }
 
 function tagFilterByLetter(search, recipes, category) {
-    let filteredTags = new Set([]);
+    let filteredTags = new Set();
     const searchValue = search.value.toLowerCase();
 
     switch (category) {
         case "ingredients":
-            filteredTags = new Set([]);
+            filteredTags = new Set();
             recipes.forEach((el) => {
                 el.ingredients.forEach((el) => {
                     if (el.ingredient.toLowerCase().includes(searchValue)) {
@@ -67,7 +78,7 @@ function tagFilterByLetter(search, recipes, category) {
             createTags(filteredTags, "appliances");
             break;
         case "ustensils":
-            filteredTags = new Set([]);
+            filteredTags = new Set();
             recipes.forEach((el) => {
                 el.ustensils.forEach((ustensil) => {
                     if (ustensil.toLowerCase().includes(searchValue)) {
@@ -105,3 +116,5 @@ function createTags(filteredTags, category) {
         currentCategory.appendChild(tagTemplate.displayTag());
     });
 }
+
+function refreshTags(recipes) {}
