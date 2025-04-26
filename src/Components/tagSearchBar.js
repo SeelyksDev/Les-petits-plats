@@ -1,5 +1,8 @@
 import { isValid, getTags } from "./searchBar";
 import { Tag } from "../Models/Tag";
+const ingredientsContainer = document.querySelector(".ingredients-list");
+const ustensilsContainer = document.querySelector(".ustensils-list");
+const appliancesContainer = document.querySelector(".appliances-list");
 
 export function handleTagSearchBar(recipes) {
     const filtersWrapper = document.querySelectorAll(
@@ -10,7 +13,6 @@ export function handleTagSearchBar(recipes) {
         const tagCrossBtn = filter.querySelector(".tag-cross-btn");
         const tagSearchInput = filter.querySelector(".tag-search-input");
         const tagSearchBtn = filter.querySelector(".tag-search-btn");
-        const list = filter.querySelectorAll(".list");
         let category = tagSearchInput.dataset.category;
 
         tagSearchInput.addEventListener("input", () => {
@@ -20,19 +22,7 @@ export function handleTagSearchBar(recipes) {
             );
 
             if (tagSearchInput.value.trim().length === 0) {
-                list.innerHTML = "";
-                switch (category) {
-                    case "ingredients":
-                        console.log("ingredients");
-                        break;
-                    case "appliances":
-                        console.log("appliances");
-                        break;
-                    case "ustensils":
-                        console.log("ustensils");
-                        break;
-                }
-                getTags(recipes);
+                refreshTags(recipes, category);
             }
 
             if (isValid(tagSearchInput)) {
@@ -44,8 +34,7 @@ export function handleTagSearchBar(recipes) {
             e.preventDefault();
             tagSearchInput.value = "";
             tagCrossBtn.classList.remove("tag-cross-visible");
-            list.innerHTML = "";
-            getTags(recipes);
+            refreshTags(recipes, category);
         });
 
         tagSearchBtn.addEventListener("click", (e) => e.preventDefault());
@@ -92,9 +81,6 @@ function tagFilterByLetter(search, recipes, category) {
 }
 
 function createTags(filteredTags, category) {
-    const ingredientsContainer = document.querySelector(".ingredients-list");
-    const ustensilsContainer = document.querySelector(".ustensils-list");
-    const appliancesContainer = document.querySelector(".appliances-list");
     let currentCategory = "";
 
     switch (category) {
@@ -117,4 +103,48 @@ function createTags(filteredTags, category) {
     });
 }
 
-function refreshTags(recipes) {}
+function refreshTags(recipes, category) {
+    switch (category) {
+        case "ingredients":
+
+            ingredientsContainer.innerHTML = "";
+            let ingredients = new Set();
+            recipes.forEach((recipe) => {
+                recipe.ingredients.forEach((current) =>
+                    ingredients.add(current.ingredient.toLowerCase())
+                );
+            });
+
+            ingredients.forEach((currentIngr) => {
+                let tagTemplate = new Tag(currentIngr);
+                ingredientsContainer.appendChild(tagTemplate.displayTag());
+            });
+            break;
+
+        case "appliances":
+            
+            appliancesContainer.innerHTML = "";
+            let appliances = new Set();
+            recipes.forEach((recipe) => appliances.add(recipe.appliance));
+
+            appliances.forEach((currentApplicance) => {
+                let tagTemplate = new Tag(currentApplicance);
+                appliancesContainer.appendChild(tagTemplate.displayTag());
+            });
+            break;
+
+        case "ustensils":
+
+            ustensilsContainer.innerHTML = "";
+            let ustensils = new Set();
+            recipes.forEach((recipe) =>
+                recipe.ustensils.forEach((current) => ustensils.add(current))
+            );
+
+            ustensils.forEach((currentUstensil) => {
+                let tagTemplate = new Tag(currentUstensil);
+                ustensilsContainer.appendChild(tagTemplate.displayTag());
+            });
+            break;
+    }
+}
