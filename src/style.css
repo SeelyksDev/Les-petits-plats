@@ -281,6 +281,10 @@ main {
         }
     }
 
+    .tags-anchor-wrapper {
+        background-color: aquamarine;
+    }
+
     .recipes-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
