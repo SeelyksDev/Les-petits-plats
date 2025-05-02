@@ -117,15 +117,15 @@ export function getTags(recipes) {
     });
 
     ingredients.forEach((currentIngr) => {
-        let tagTemplate = new Tag(currentIngr);
+        let tagTemplate = new Tag(currentIngr, recipes);
         ingredientsContainer.appendChild(tagTemplate.displayTag());
     });
     ustensils.forEach((currentUstensil) => {
-        let tagTemplate = new Tag(currentUstensil);
+        let tagTemplate = new Tag(currentUstensil, recipes);
         ustensilsContainer.appendChild(tagTemplate.displayTag());
     });
     appliances.forEach((currentApplicance) => {
-        let tagTemplate = new Tag(currentApplicance);
+        let tagTemplate = new Tag(currentApplicance, recipes);
         appliancesContainer.appendChild(tagTemplate.displayTag());
     });
 
