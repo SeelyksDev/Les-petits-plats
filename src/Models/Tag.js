@@ -9,7 +9,11 @@ export class Tag {
     handleTagClick(tag, recipes) {
         tag.addEventListener("click", () => {
             const value = tag.dataset.value;
-            filterByTag(value, recipes);
+            const listContainer = tag.closest(".dropdown-content");
+            const tagSearchInput = listContainer.querySelector(".tag-search-input");
+            const category = tagSearchInput.dataset.category;
+
+            filterByTag(value, recipes, category);
         })
     }
 

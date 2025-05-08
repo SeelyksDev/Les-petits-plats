@@ -1,38 +1,37 @@
-export function filterByTag(tag, recipes) {
-//Récup la category et faire une condition pour savoir à partir de quelle catégory de données je filtre mes recettes 
+import { displayRecipes } from "../script";
 
-filteredTags = new Set();
- switch (category) {
-    case "ingredients":
-        recipes.forEach((el) => {
-            el.ingredients.forEach((el) => {
-                if (el.ingredient.toLowerCase().includes(searchValue)) {
-                    filteredTags.add(el.ingredient);
+export function filterByTag(tag, recipes, category) {
+    const tagName = tag.toLowerCase();
+    let filteredTags = [];
+    switch (category) {
+        case "ingredients":
+            recipes.forEach((el) => {
+                el.ingredients.forEach((ingr) => {
+                    if (ingr.ingredient.toLowerCase().includes(tagName)) {
+                        filteredTags.push(el);
+                    }
+                });
+            });
+            break;
+
+        case "appliances":
+            recipes.forEach((el) => {
+                if (el.appliance.toLowerCase().includes(tagName)) {
+                    filteredTags.push(el);
                 }
             });
-        });
-        createTags(filteredTags, "ingredients");
-        break;
-    case "appliances":
-        filteredTags = new Set();
-        recipes.forEach((el) => {
-            if (el.appliance.toLowerCase().includes(searchValue)) {
-                filteredTags.add(el.appliance);
-            }
-        });
-        createTags(filteredTags, "appliances");
-        break;
-    case "ustensils":
-        filteredTags = new Set();
-        recipes.forEach((el) => {
-            el.ustensils.forEach((ustensil) => {
-                if (ustensil.toLowerCase().includes(searchValue)) {
-                    filteredTags.add(ustensil);
-                }
+            break;
+
+        case "ustensils":
+            recipes.forEach((el) => {
+                el.ustensils.forEach((ustensil) => {
+                    if (ustensil.toLowerCase().includes(tagName)) {
+                        filteredTags.push(el);
+                    }
+                });
             });
-        });
-        createTags(filteredTags, "ustensils");
-        break;
-}
-console.log(tag);
+            break;
+    }
+    displayRecipes(filteredTags);
+    console.log(filteredTags);
 }
