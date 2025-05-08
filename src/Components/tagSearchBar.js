@@ -55,7 +55,7 @@ function tagFilterByLetter(search, recipes, category) {
                     }
                 });
             });
-            createTags(filteredTags, "ingredients");
+            createTags(filteredTags, "ingredients", recipes);
             break;
         case "appliances":
             filteredTags = new Set();
@@ -64,7 +64,7 @@ function tagFilterByLetter(search, recipes, category) {
                     filteredTags.add(el.appliance);
                 }
             });
-            createTags(filteredTags, "appliances");
+            createTags(filteredTags, "appliances", recipes);
             break;
         case "ustensils":
             filteredTags = new Set();
@@ -75,12 +75,12 @@ function tagFilterByLetter(search, recipes, category) {
                     }
                 });
             });
-            createTags(filteredTags, "ustensils");
+            createTags(filteredTags, "ustensils", recipes);
             break;
     }
 }
 
-function createTags(filteredTags, category) {
+function createTags(filteredTags, category, recipes) {
     let currentCategory = "";
 
     switch (category) {
@@ -98,7 +98,7 @@ function createTags(filteredTags, category) {
     currentCategory.innerHTML = "";
 
     filteredTags.forEach((el) => {
-        let tagTemplate = new Tag(el);
+        let tagTemplate = new Tag(el, recipes);
         currentCategory.appendChild(tagTemplate.displayTag());
     });
 }

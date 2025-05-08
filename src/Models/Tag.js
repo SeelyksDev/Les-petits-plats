@@ -11,7 +11,7 @@ export class Tag {
             const value = tag.dataset.value;
             const listContainer = tag.closest(".dropdown-content");
             const tagSearchInput = listContainer.querySelector(".tag-search-input");
-            const category = tagSearchInput.dataset.category;
+            const category = tagSearchInput.dataset.category; 
 
             filterByTag(value, recipes, category);
         })
@@ -24,5 +24,9 @@ export class Tag {
         this.handleTagClick(li, this.recipes);
 
         return li;
+    }
+
+    displayTagAnchor(tag) {
+    
     }
 }

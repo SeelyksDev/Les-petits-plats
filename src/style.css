@@ -281,8 +281,32 @@ main {
         }
     }
 
-    .tags-anchor-wrapper {
-        background-color: aquamarine;
+    .tags-anchors-wrapper {
+        margin-bottom: 43px;
+
+        .tag-anchor {
+            display: flex;
+            align-items: center;
+            padding: 17px 18px;
+            background-color: var(--main-color);
+            width: fit-content;
+            border-radius: 10px;
+
+            .anchor-text {
+                font-size: 0.875rem;
+                font-family: var(--manrope-font);
+                margin-right: 60px;
+            }
+
+            .anchor-cross-btn {
+                display: flex;
+                align-items: center;
+                background: none;
+                img {
+                filter: brightness(0) saturate(100%);
+                }
+            }
+        }
     }
 
     .recipes-wrapper {
