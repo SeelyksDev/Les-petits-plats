@@ -33,5 +33,4 @@ export function filterByTag(tag, recipes, category) {
             break;
     }
     displayRecipes(filteredTags);
-    // console.log(filteredTags);
 }
