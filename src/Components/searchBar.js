@@ -42,11 +42,7 @@ export async function handleSearchBar() {
 }
 
 export function isValid(search) {
-    if (search.value.trim().length >= 3) {
-        return true;
-    } else {
-        return false;
-    }
+    return search.value.trim().length >= 3;  
 }
 
 export function filterByLetter(search, recipes) {

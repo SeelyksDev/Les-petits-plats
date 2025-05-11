@@ -24,8 +24,9 @@ export class Tag {
     }
 
     handleCrossTagClick(tag, array) {
+        const anchorCross = document.querySelector(".anchor-cross-btn");
         let tagName = tag.dataset.value;
-        tag.addEventListener("click", (e) => {
+        anchorCross.addEventListener("click", (e) => {
             e.preventDefault();
             this.deleteTagAnchor(array, tagName);
         });

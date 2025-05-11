@@ -27,7 +27,7 @@ export function displayRecipes(recipes) {
         recipesWrapper.appendChild(recipesTemplate.getNewRecipeDOM());
     });
 
-    numberRecipes.textContent = `${recipes.length} recettes`;
+    numberRecipes.textContent = `${recipes.length} recettes`; //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
     getTags(recipes);
 }
 
