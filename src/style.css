@@ -242,6 +242,13 @@ main {
                         li:hover {
                             text-decoration: underline;
                         }
+
+                        .tag-error-msg {
+                            font-family: var(--manrope-font);
+                            font-size: 0.75rem;
+                            padding: 0 16px 15px 16px;
+                            text-align: center;
+                        }
                     }
                 }
             }
