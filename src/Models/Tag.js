@@ -1,7 +1,8 @@
 import { filterByTag } from "../utils/filterByTag";
 import { anchorTagTop } from "../utils/anchorTagTop";
 const anchorsWrapper = document.querySelector(".tags-anchors-wrapper");
-let anchorArray = new Set();
+let anchorObject = new Set();
+let anchorTopObject = new Set();
 
 export class Tag {
     constructor(value, recipes) {
@@ -18,10 +19,13 @@ export class Tag {
             const category = tagSearchInput.dataset.category;
 
             filterByTag(value, recipes, category);
+
             anchorsWrapper.innerHTML = "";
-            anchorArray.add(value);
-            this.displayTagAnchor(anchorArray);
-            anchorTagTop(value, category);
+            anchorObject.add(value);
+            this.displayTagAnchor(anchorObject);
+
+            anchorTopObject.add(value)
+            anchorTagTop(category, anchorTopObject);
         });
     }
 
@@ -70,13 +74,5 @@ export class Tag {
         let anchorsArray = [...anchorsObject];
         let newAnchorArray = anchorsArray.filter((anchor) => anchor !== tag);
         this.displayTagAnchor(newAnchorArray);
-    }
-    
-
-    displayTagAnchorTop(tagName) {
-        const liTagAnchor = document.createElement("li");
-        liTagAnchor.classList.add("tag-top-anchor");
-        liTagAnchor.textContent = tagName;
-        ul.appendChild(liTagAnchor);
     }
 }

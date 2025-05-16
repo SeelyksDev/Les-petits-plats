@@ -220,6 +220,13 @@ main {
                         }
                     }
 
+                    .tag-top-anchor {
+                        background-color: var(--main-color);
+                        padding: 9px 16px;
+                        font-family: var(--manrope-font);
+                        font-size: 0.875rem;
+                    }
+
                     .list {
                         max-height: 259px;
                         overflow: scroll;
