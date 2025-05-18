@@ -220,12 +220,38 @@ main {
                         }
                     }
 
+                    .top-anchor-wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        margin-bottom: 21px;
+                    }
+
                     .tag-top-anchor {
+                        display: flex;
+                        justify-content: space-between;
                         background-color: var(--main-color);
                         padding: 9px 16px;
                         font-family: var(--manrope-font);
                         font-size: 0.875rem;
                     }
+
+                    .tag-top-anchor:hover {
+                        .cross-top-anchor-btn {
+                            display: flex;
+                            visibility: visible;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .cross-top-anchor-btn {
+                        display: none;
+                        visibility: hidden;
+
+                    .img-anchor-top {
+                        background-color: var(--main-color);
+                    }
+                }
 
                     .list {
                         max-height: 259px;

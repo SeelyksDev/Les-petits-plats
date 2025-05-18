@@ -1,6 +1,8 @@
 import { filterByTag } from "../utils/filterByTag";
 import { anchorTagTop } from "../utils/anchorTagTop";
 const anchorsWrapper = document.querySelector(".tags-anchors-wrapper");
+let anchorsTopWrapper = document.createElement("ul");
+anchorsTopWrapper.classList.add("top-anchor-wrapper");
 let anchorObject = new Set();
 let anchorTopObject = new Set();
 
@@ -23,9 +25,9 @@ export class Tag {
             anchorsWrapper.innerHTML = "";
             anchorObject.add(value);
             this.displayTagAnchor(anchorObject);
-
+            
             anchorTopObject.add(value)
-            anchorTagTop(category, anchorTopObject);
+            anchorTagTop(category, anchorTopObject, anchorsTopWrapper);
         });
     }
 
