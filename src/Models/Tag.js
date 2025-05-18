@@ -3,8 +3,15 @@ import { anchorTagTop } from "../utils/anchorTagTop";
 const anchorsWrapper = document.querySelector(".tags-anchors-wrapper");
 let anchorsTopWrapper = document.createElement("ul");
 anchorsTopWrapper.classList.add("top-anchor-wrapper");
+const ingredientsContainer = document.querySelector(".ingredients-list");
+const ustensilsContainer = document.querySelector(".ustensils-list");
+const appliancesContainer = document.querySelector(".appliances-list");
+
 let anchorObject = new Set();
-let anchorTopObject = new Set();
+let anchorsTopIngredients = new Set();
+let anchorsTopAppliances = new Set();
+let anchorsTopUstensils = new Set();
+// let anchorTopObject = new Set();
 
 export class Tag {
     constructor(value, recipes) {
@@ -22,12 +29,29 @@ export class Tag {
 
             filterByTag(value, recipes, category);
 
-            anchorsWrapper.innerHTML = "";
             anchorObject.add(value);
             this.displayTagAnchor(anchorObject);
-            
-            anchorTopObject.add(value)
-            anchorTagTop(category, anchorTopObject, anchorsTopWrapper);
+
+            let currentCategory = "";
+            let currentTopAnchorsObject;
+            switch (category) {
+                case "ingredients":
+                    currentCategory = ingredientsContainer;
+                    currentTopAnchorsObject = anchorsTopIngredients.add(value);
+                    break;
+                case "appliances":
+                    currentCategory = appliancesContainer;
+                    currentTopAnchorsObject = anchorsTopAppliances.add(value);
+                    break;
+                case "ustensils":
+                    currentCategory = ustensilsContainer;
+                    currentTopAnchorsObject = anchorsTopUstensils.add(value);
+                    break;
+            }
+
+            anchorsTopWrapper.innerHTML = "";
+            // anchorTopObject.add(value);
+            anchorTagTop(currentCategory, currentTopAnchorsObject, anchorsTopWrapper);
         });
     }
 
