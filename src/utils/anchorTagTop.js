@@ -1,17 +1,10 @@
 export function anchorTagTop(category, anchorTopObject, anchorsWrapper) {
     let anchorTopArray = [...anchorTopObject];
-    const topAnchorWrapper = category.previousElementSibling;
+    category.insertAdjacentElement("beforebegin", anchorsWrapper);
 
-    if (anchorTopArray.length > 0) {
-        if (!topAnchorWrapper) {
-            category.insertAdjacentElement("beforebegin", anchorsWrapper);
-        }
-        anchorTopArray.forEach((anchor) => {
-            anchorsWrapper.appendChild(displayTagAnchorTop(anchor));
-        });
-    } else if (topAnchorWrapper) {
-        topAnchorWrapper.remove();
-    }
+    anchorTopArray.forEach((anchor) => {
+        anchorsWrapper.appendChild(displayTagAnchorTop(anchor));
+    });
 }
 
 function displayTagAnchorTop(tagName) {
