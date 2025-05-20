@@ -1,17 +1,23 @@
 import { filterByTag } from "../utils/filterByTag";
 import { anchorTagTop } from "../utils/anchorTagTop";
 const anchorsWrapper = document.querySelector(".tags-anchors-wrapper");
-let anchorsTopWrapper = document.createElement("ul");
-anchorsTopWrapper.classList.add("top-anchor-wrapper");
 const ingredientsContainer = document.querySelector(".ingredients-list");
 const ustensilsContainer = document.querySelector(".ustensils-list");
 const appliancesContainer = document.querySelector(".appliances-list");
+
+let anchorsTopIngredientsWrapper = document.createElement("ul");
+anchorsTopIngredientsWrapper.classList.add("top-anchor-wrapper");
+
+let anchorsTopAppliancesWrapper = document.createElement("ul");
+anchorsTopAppliancesWrapper.classList.add("top-anchor-wrapper");
+
+let anchorsTopUstensilsWrapper = document.createElement("ul");
+anchorsTopUstensilsWrapper.classList.add("top-anchor-wrapper");
 
 let anchorObject = new Set();
 let anchorsTopIngredients = new Set();
 let anchorsTopAppliances = new Set();
 let anchorsTopUstensils = new Set();
-// let anchorTopObject = new Set();
 
 export class Tag {
     constructor(value, recipes) {
@@ -38,20 +44,34 @@ export class Tag {
                 case "ingredients":
                     currentCategory = ingredientsContainer;
                     currentTopAnchorsObject = anchorsTopIngredients.add(value);
+                    anchorsTopIngredientsWrapper.innerHTML = "";
+                    anchorTagTop(
+                        currentCategory,
+                        anchorsTopIngredients,
+                        anchorsTopIngredientsWrapper
+                    );
                     break;
                 case "appliances":
                     currentCategory = appliancesContainer;
                     currentTopAnchorsObject = anchorsTopAppliances.add(value);
+                    anchorsTopAppliancesWrapper.innerHTML = "";
+                    anchorTagTop(
+                        currentCategory,
+                        anchorsTopAppliances,
+                        anchorsTopAppliancesWrapper
+                    );
                     break;
                 case "ustensils":
                     currentCategory = ustensilsContainer;
                     currentTopAnchorsObject = anchorsTopUstensils.add(value);
+                    anchorsTopUstensilsWrapper.innerHTML = "";
+                    anchorTagTop(
+                        currentCategory,
+                        anchorsTopUstensils,
+                        anchorsTopUstensilsWrapper
+                    );
                     break;
             }
-
-            anchorsTopWrapper.innerHTML = "";
-            // anchorTopObject.add(value);
-            anchorTagTop(currentCategory, currentTopAnchorsObject, anchorsTopWrapper);
         });
     }
 

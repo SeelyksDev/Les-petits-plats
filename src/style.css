@@ -97,6 +97,10 @@ h1 {
         font-size: 1rem;
     }
 
+    .search-field:focus {
+        outline-color: var(--main-color);
+    }
+
     .cross-btn {
         display: none;
         visibility: hidden;
@@ -178,6 +182,10 @@ main {
                             padding: 0 50px 0 8px;
                         }
 
+                        .tag-search-input:focus {
+                            outline-color: var(--main-color);
+                        }
+
                         .tag-cross-btn {
                             display: none;
                             visibility: hidden;
@@ -222,6 +230,7 @@ main {
 
                     .top-anchor-wrapper {
                         display: flex;
+                        flex-wrap: wrap;
                         flex-direction: column;
                         gap: 5px;
                         margin-bottom: 21px;
