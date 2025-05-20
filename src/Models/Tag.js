@@ -95,6 +95,9 @@ export class Tag {
     }
 
     displayTagAnchor(array) {
+
+        array.length !== 0 ? anchorsWrapper.classList.toggle("display") : "";
+
         anchorsWrapper.innerHTML = "";
         array.forEach((anchor) => {
             let li = document.createElement("li");
