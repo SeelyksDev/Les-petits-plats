@@ -24,6 +24,7 @@ function displayTagAnchorTop(tagName) {
     crossBtnAnchor.appendChild(crossImg);
 
     liTagAnchor.appendChild(crossBtnAnchor);
+    
 
     return liTagAnchor;
 }

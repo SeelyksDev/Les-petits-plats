@@ -1,5 +1,6 @@
-import { filterByTag } from "../utils/filterByTag";
 import { anchorTagTop } from "../utils/anchorTagTop";
+import { displayRecipes } from "../script";
+import { RecipesList } from "./RecipesList";
 const anchorsWrapper = document.querySelector(".tags-anchors-wrapper");
 const ingredientsContainer = document.querySelector(".ingredients-list");
 const ustensilsContainer = document.querySelector(".ustensils-list");
@@ -23,9 +24,10 @@ export class Tag {
     constructor(value, recipes) {
         this.value = value;
         this.recipes = recipes;
+        this.recipesList = new RecipesList(this.recipes);
     }
 
-    handleTagClick(tag, recipes) {
+    handleTagClick(tag) {
         tag.addEventListener("click", () => {
             const value = tag.dataset.value;
             const listContainer = tag.closest(".dropdown-content");
@@ -33,9 +35,7 @@ export class Tag {
                 listContainer.querySelector(".tag-search-input");
             const category = tagSearchInput.dataset.category;
 
-            filterByTag(value, recipes, category);
-
-            anchorObject.add(value);
+            anchorObject.add({value: value, category: category});
             this.displayTagAnchor(anchorObject);
 
             let currentCategory = "";
@@ -50,6 +50,12 @@ export class Tag {
                         anchorsTopIngredients,
                         anchorsTopIngredientsWrapper
                     );
+
+                    const filteredRecipesByIngredients =
+                        this.recipesList.filterByIngredients([value]);
+                    displayRecipes(filteredRecipesByIngredients);
+                    console.log(filteredRecipesByIngredients);
+
                     break;
                 case "appliances":
                     currentCategory = appliancesContainer;
@@ -60,6 +66,9 @@ export class Tag {
                         anchorsTopAppliances,
                         anchorsTopAppliancesWrapper
                     );
+                    const filteredRecipeByAppliances =
+                        this.recipesList.filterByAppliances(value);
+                    displayRecipes(filteredRecipeByAppliances);
                     break;
                 case "ustensils":
                     currentCategory = ustensilsContainer;
@@ -70,17 +79,11 @@ export class Tag {
                         anchorsTopUstensils,
                         anchorsTopUstensilsWrapper
                     );
+                    const filteredRecipesByUstensils =
+                        this.recipesList.filterByUstensils(value);
+                    displayRecipes(filteredRecipesByUstensils);
                     break;
             }
-        });
-    }
-
-    handleCrossTagClick(tag, array) {
-        const anchorCross = document.querySelector(".anchor-cross-btn");
-        let tagName = tag.dataset.value;
-        anchorCross.addEventListener("click", (e) => {
-            e.preventDefault();
-            this.deleteTagAnchor(array, tagName);
         });
     }
 
@@ -95,17 +98,16 @@ export class Tag {
     }
 
     displayTagAnchor(array) {
-
-        array.length !== 0 ? anchorsWrapper.classList.toggle("display") : "";
+        anchorsWrapper.classList.add("display");
 
         anchorsWrapper.innerHTML = "";
         array.forEach((anchor) => {
             let li = document.createElement("li");
             li.classList.add("tag-anchor");
-            li.setAttribute("data-value", `${anchor}`);
+            li.setAttribute("data-value", `${anchor.value}`);
             li.innerHTML = `
                 <span class="anchor-text">${
-                    anchor[0].toUpperCase() + anchor.slice(1).toLowerCase()
+                    anchor.value[0].toUpperCase() + anchor.value.slice(1).toLowerCase()
                 }</span>
                 <button class="anchor-cross-btn">
                     <img
@@ -115,13 +117,29 @@ export class Tag {
                 </button>
     `;
             anchorsWrapper.appendChild(li);
-            this.handleCrossTagClick(li, array);
+            this.handleCrossTagClick(li);
         });
     }
 
-    deleteTagAnchor(anchorsObject, tag) {
-        let anchorsArray = [...anchorsObject];
-        let newAnchorArray = anchorsArray.filter((anchor) => anchor !== tag);
-        this.displayTagAnchor(newAnchorArray);
+    handleCrossTagClick(mainTagAnchor) {
+        const mainTagAnchorvalue = mainTagAnchor.dataset.value;
+        console.log(mainTagAnchorvalue);
+
+        let mainAnchorBtn = mainTagAnchor.querySelector(".anchor-cross-btn");
+        //let listAnchorBtn = tag.querySelector(".cross-top-anchor-btn");
+
+        mainAnchorBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            this.deleteAnchorObject(mainTagAnchorvalue, anchorObject);
+            const filteredRecipesByIngredients =
+                this.recipesList.filterByIngredients([value]);
+            displayRecipes(filteredRecipesByIngredients);
+        });
+    }
+
+    deleteAnchorObject(value, anchorObject) {
+        console.log(anchorObject);
+        anchorObject.delete(value);
+        console.log(anchorObject);
     }
 }
