@@ -194,7 +194,7 @@ main {
     padding: 0 102px 201px 102px;
 
     @media (max-width: 1024px) {
-        padding: 0 40px 20px 20px;
+        padding: 0 40px 20px 40px;
     }
 
     @media (max-width: 768px) {
@@ -358,7 +358,7 @@ main {
                         }
 
                         li:last-child {
-                            padding-bottom: 13px;
+                            margin-bottom: 13px;
                         }
 
                         li:hover {
@@ -390,6 +390,10 @@ main {
                     z-index: 1000;
                     max-width: 195px;
                     border-radius: 0 0 11px 11px;
+
+                    @media (max-width: 1024px) {
+                        max-width: 185.45px;
+                    }
                 }
             }
 
@@ -447,6 +451,7 @@ main {
 
     .display {
         display: flex;
+        flex-wrap: wrap;
         visibility: visible;
     }
 

@@ -1,7 +1,7 @@
 export function anchorTagTop(category, anchorTopObject, anchorsWrapper) {
     let anchorTopArray = [...anchorTopObject]; 
     category.insertAdjacentElement("beforebegin", anchorsWrapper);
-    console.log(anchorsWrapper);
+    //console.log(anchorsWrapper);
 
     anchorTopArray.forEach((anchor) => {
         anchorsWrapper.appendChild(displayTagAnchorTop(anchor));

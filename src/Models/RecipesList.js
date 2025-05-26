@@ -3,9 +3,7 @@ export class RecipesList {
         this.recipes = recipes;
     }
 
-    filterByIngredients(ingredientsList) {
-        console.log(ingredientsList);
-        
+    filterByIngredients(ingredientsList) {        
         return this.recipes.filter(
             (el) =>
                 el.ingredients.filter(

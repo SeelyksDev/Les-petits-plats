@@ -35,7 +35,9 @@ export class Tag {
                 listContainer.querySelector(".tag-search-input");
             const category = tagSearchInput.dataset.category;
 
-            anchorObject.add({value: value, category: category});
+            if (!this.hasAnchor(value, category)) {
+                anchorObject.add({ tagName: value, category: category });
+            }
             this.displayTagAnchor(anchorObject);
 
             let currentCategory = "";
@@ -104,10 +106,12 @@ export class Tag {
         array.forEach((anchor) => {
             let li = document.createElement("li");
             li.classList.add("tag-anchor");
-            li.setAttribute("data-value", `${anchor.value}`);
+            li.setAttribute("data-value", `${anchor.tagName}`);
+            li.setAttribute("data-category", `${anchor.category}`);
             li.innerHTML = `
                 <span class="anchor-text">${
-                    anchor.value[0].toUpperCase() + anchor.value.slice(1).toLowerCase()
+                    anchor.tagName[0].toUpperCase() +
+                    anchor.tagName.slice(1).toLowerCase()
                 }</span>
                 <button class="anchor-cross-btn">
                     <img
@@ -122,24 +126,55 @@ export class Tag {
     }
 
     handleCrossTagClick(mainTagAnchor) {
-        const mainTagAnchorvalue = mainTagAnchor.dataset.value;
-        console.log(mainTagAnchorvalue);
-
+        const mainTagAnchorValue = mainTagAnchor.dataset.value;
+        const mainTagAnchorCategory = mainTagAnchor.dataset.category;
         let mainAnchorBtn = mainTagAnchor.querySelector(".anchor-cross-btn");
-        //let listAnchorBtn = tag.querySelector(".cross-top-anchor-btn");
+        //let listAnchorBtn = tag.querySelector("cross-top-anchor-btn");
 
         mainAnchorBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            this.deleteAnchorObject(mainTagAnchorvalue, anchorObject);
-            const filteredRecipesByIngredients =
-                this.recipesList.filterByIngredients([value]);
-            displayRecipes(filteredRecipesByIngredients);
+            this.deleteAnchorObject(mainTagAnchorValue, anchorObject);
+            this.displayTagAnchor(anchorObject);
+            //Selon la category je vais faire appelle à une des methdo de RecipesList
+
+            switch (mainTagAnchorCategory) {
+                case "ingredients":
+                    console.log("categorie : ingredients");
+                    const filteredRecipesByIngredients =
+                        this.recipesList.filterByIngredients(mainTagAnchorValue);
+                    displayRecipes(filteredRecipesByIngredients);
+                    console.log(filteredRecipesByIngredients);
+                    //ça marche pas car mes methode font l'inverse -> En gros je donne le nom du tag que je veux supprimer mais dans les methodes cela trie les recette qui contiennent le tag sauf que c'est l'inverse qu'il faut.
+                    
+                    break;
+                case "appliances":
+                    console.log("categorie : appliances");
+                    break;
+                case "ustensils":
+                    console.log("categorie : ustensils");
+                    break;
+            }
         });
     }
 
     deleteAnchorObject(value, anchorObject) {
+        console.log(value);
+
+        for (let item of anchorObject) {
+            if (item.tagName === value) {
+                anchorObject.delete(item);
+                break;
+            }
+        }
         console.log(anchorObject);
-        anchorObject.delete(value);
-        console.log(anchorObject);
+    }
+
+    hasAnchor(value, category) {
+        for (let item of anchorObject) {
+            if (item.tagName === value && item.category === category) {
+                return true;
+            }
+        }
+        return false;
     }
 }
