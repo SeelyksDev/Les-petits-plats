@@ -3,12 +3,12 @@ export class RecipesList {
         this.recipes = recipes;
     }
 
-    filterByIngredients(ingredientsList) {        
+    filterByIngredients(ingredient) {        
         return this.recipes.filter(
             (el) =>
                 el.ingredients.filter(
                     (ingr) =>
-                        ingredientsList.includes(ingr.ingredient.toLowerCase())    
+                        ingredient.includes(ingr.ingredient.toLowerCase())    
                 ).length > 0
         );
     }
@@ -24,6 +24,16 @@ export class RecipesList {
             (el) =>
                 el.ustensils.filter(
                     (ust) => ustensil.toLowerCase() === ust.toLowerCase()
+                ).length > 0
+        );
+    }
+
+    filterByIngredientDeleteTag(ingredient) {
+        return this.recipes.filter(
+            (el) =>
+                el.ingredients.filter(
+                    (ingr) => 
+                        !ingredient.includes(ingr.ingredient.toLowerCase())
                 ).length > 0
         );
     }

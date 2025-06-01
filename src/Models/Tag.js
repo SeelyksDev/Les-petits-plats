@@ -141,11 +141,10 @@ export class Tag {
                 case "ingredients":
                     console.log("categorie : ingredients");
                     const filteredRecipesByIngredients =
-                        this.recipesList.filterByIngredients(mainTagAnchorValue);
+                        this.recipesList.filterByIngredientDeleteTag(mainTagAnchorValue);
                     displayRecipes(filteredRecipesByIngredients);
                     console.log(filteredRecipesByIngredients);
                     //ça marche pas car mes methode font l'inverse -> En gros je donne le nom du tag que je veux supprimer mais dans les methodes cela trie les recette qui contiennent le tag sauf que c'est l'inverse qu'il faut.
-                    
                     break;
                 case "appliances":
                     console.log("categorie : appliances");
