@@ -38,6 +38,9 @@ export class Tag {
             if (!this.hasAnchor(value, category)) {
                 anchorObject.add({ tagName: value, category: category });
             }
+            console.log(`Une ancre à été ajouté : ${value}`);
+            console.log(anchorsWrapper);
+
             this.displayTagAnchor(anchorObject);
 
             let currentCategory = "";
@@ -134,17 +137,38 @@ export class Tag {
         mainAnchorBtn.addEventListener("click", (e) => {
             e.preventDefault();
             this.deleteAnchorObject(mainTagAnchorValue, anchorObject);
+            console.log(anchorObject);
             this.displayTagAnchor(anchorObject);
-            //Selon la category je vais faire appelle à une des methdo de RecipesList
+            let currentTag = [];
 
             switch (mainTagAnchorCategory) {
                 case "ingredients":
                     console.log("categorie : ingredients");
-                    const filteredRecipesByIngredients =
-                        this.recipesList.filterByIngredientDeleteTag(mainTagAnchorValue);
-                    displayRecipes(filteredRecipesByIngredients);
-                    console.log(filteredRecipesByIngredients);
-                    //ça marche pas car mes methode font l'inverse -> En gros je donne le nom du tag que je veux supprimer mais dans les methodes cela trie les recette qui contiennent le tag sauf que c'est l'inverse qu'il faut.
+                    console.log(anchorObject.size);
+
+                    if (anchorObject.size === 0) {
+                        displayRecipes(this.recipes);
+                        console.log("ZERO");
+                        
+                    } else {
+                        for (let i = 0; i < anchorObject.size === 0; i++) {
+                            let value = anchorObject[i].value.tagName;
+                            currentTag.push(value);
+
+                            for (let j = 0; j < currentTag.length; j++) {
+                                const filteredRecipesByIngredients =
+                                    this.recipesList.filterByIngredientDeleteTag(
+                                        currentTag[j]
+                                    );
+                                console.log("AFFICHAGE !!!");
+                                
+                                displayRecipes(filteredRecipesByIngredients);
+                            }
+
+
+                        }
+                    }
+
                     break;
                 case "appliances":
                     console.log("categorie : appliances");
@@ -165,7 +189,6 @@ export class Tag {
                 break;
             }
         }
-        console.log(anchorObject);
     }
 
     hasAnchor(value, category) {

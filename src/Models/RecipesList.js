@@ -1,14 +1,14 @@
 export class RecipesList {
     constructor(recipes) {
         this.recipes = recipes;
+        this.recipesFiltered;
     }
 
-    filterByIngredients(ingredient) {        
+    filterByIngredients(ingredient) {
         return this.recipes.filter(
             (el) =>
-                el.ingredients.filter(
-                    (ingr) =>
-                        ingredient.includes(ingr.ingredient.toLowerCase())    
+                el.ingredients.filter((ingr) =>
+                    ingredient.includes(ingr.ingredient.toLowerCase())
                 ).length > 0
         );
     }
@@ -29,12 +29,15 @@ export class RecipesList {
     }
 
     filterByIngredientDeleteTag(ingredient) {
-        return this.recipes.filter(
+        console.log(this.recipes);
+
+        this.recipes = this.recipes.filter(
             (el) =>
                 el.ingredients.filter(
-                    (ingr) => 
+                    (ingr) =>
                         !ingredient.includes(ingr.ingredient.toLowerCase())
                 ).length > 0
         );
+        return this.recipes;
     }
 }
