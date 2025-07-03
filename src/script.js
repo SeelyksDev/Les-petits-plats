@@ -1,5 +1,6 @@
 import { Recipe } from "./Models/Recipe";
 import { handleSearchBar, getTags } from "./Components/searchBar";
+import { TagManager } from "./Models/TagManager";
 
 export async function getRecipes() {
     try {
@@ -9,7 +10,6 @@ export async function getRecipes() {
             throw new Error(`reponse : ${response.status}`);
         }
         const data = await response.json();
-
         return data;
     } catch (err) {
         console.error(err);
@@ -33,6 +33,10 @@ export function displayRecipes(recipes) {
 
 async function init() {
     const recipes = await getRecipes();
+    
+    // Initialiser le gestionnaire de tags avec les recettes originales
+    TagManager.setOriginalRecipes(recipes);
+    
     displayRecipes(recipes);
     handleSearchBar();
 }
