@@ -27,7 +27,9 @@
                     type="text"
                     placeholder="Rechercher une recette, un ingrédient, ..."
                 />
-                <button class="cross-btn"><img src="/assets/icons/cross.svg" alt="croix"></button>
+                <button class="cross-btn">
+                    <img src="/assets/icons/cross.svg" alt="croix" />
+                </button>
                 <button class="search-btn">
                     <img
                         class="search-btn-img"
@@ -39,8 +41,8 @@
         </header>
         <main>
             <div class="main-header">
-                <ul class="sort-wrapper">
-                    <li>
+                <ul class="filters-wrapper">
+                    <li class="filter">
                         <details>
                             <summary>
                                 <p>Ingrédients</p>
@@ -50,9 +52,31 @@
                                     class="arrow-down"
                                 />
                             </summary>
+                            <div class="dropdown-content">
+                                <form class="tag-searchbar-wrapper">
+                                    <input
+                                        type="text"
+                                        class="tag-search-input"
+                                        data-category="ingredients"
+                                    />
+                                    <button class="tag-cross-btn">
+                                        <img
+                                            src="/assets/icons/cross.svg"
+                                            alt="croix"
+                                        />
+                                    </button>
+                                    <button class="tag-search-btn">
+                                        <img
+                                            src="/assets/icons/search-icon.svg"
+                                            alt="icone loupe"
+                                        />
+                                    </button>
+                                </form>
+                                <ul class="ingredients-list list"></ul>
+                            </div>
                         </details>
                     </li>
-                    <li>
+                    <li class="filter">
                         <details>
                             <summary>
                                 <p>Appareils</p>
@@ -62,9 +86,31 @@
                                     class="arrow-down"
                                 />
                             </summary>
+                            <div class="dropdown-content">
+                                <form class="tag-searchbar-wrapper">
+                                    <input
+                                        type="text"
+                                        class="tag-search-input"
+                                        data-category="appliances"
+                                    />
+                                    <button class="tag-cross-btn">
+                                        <img
+                                            src="/assets/icons/cross.svg"
+                                            alt="croix"
+                                        />
+                                    </button>
+                                    <button class="tag-search-btn">
+                                        <img
+                                            src="/assets/icons/search-icon.svg"
+                                            alt="icone loupe"
+                                        />
+                                    </button>
+                                </form>
+                                <ul class="appliances-list list"></ul>
+                            </div>
                         </details>
                     </li>
-                    <li>
+                    <li class="filter">
                         <details>
                             <summary>
                                 <p>Ustensiles</p>
@@ -74,11 +120,34 @@
                                     class="arrow-down"
                                 />
                             </summary>
+                            <div class="dropdown-content">
+                                <form class="tag-searchbar-wrapper">
+                                    <input
+                                        type="text"
+                                        class="tag-search-input"
+                                        data-category="ustensils"
+                                    />
+                                    <button class="tag-cross-btn">
+                                        <img
+                                            src="/assets/icons/cross.svg"
+                                            alt="croix"
+                                        />
+                                    </button>
+                                    <button class="tag-search-btn">
+                                        <img
+                                            src="/assets/icons/search-icon.svg"
+                                            alt="icone loupe"
+                                        />
+                                    </button>
+                                </form>
+                                <ul class="ustensils-list list"></ul>
+                            </div>
                         </details>
                     </li>
                 </ul>
                 <p class="number-recipes"></p>
             </div>
+            <ul class="tags-anchors-wrapper"></ul>
             <section class="recipes-wrapper"></section>
         </main>
         <script type="module" src="/src/script.js"></script>
