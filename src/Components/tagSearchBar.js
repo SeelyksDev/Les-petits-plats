@@ -96,7 +96,7 @@ function createTags(filteredTags, category, recipes) {
             break;
     }
 
-    currentCategory.innerHTML = "";
+    currentCategory.textContent = "";
 
     if (tagsArray.length === 0) {
         let span = document.createElement("p");
@@ -104,7 +104,6 @@ function createTags(filteredTags, category, recipes) {
         span.textContent = "Aucun filtre ne correspond à votre recherche.";
         currentCategory.appendChild(span);
     } else {
-
         tagsArray.forEach((el) => {
             let tagTemplate = new Tag(el, recipes);
             currentCategory.appendChild(tagTemplate.displayTag());
@@ -115,7 +114,7 @@ function createTags(filteredTags, category, recipes) {
 function refreshTags(recipes, category) {
     switch (category) {
         case "ingredients":
-            ingredientsContainer.innerHTML = "";
+            ingredientsContainer.textContent = "";
             let ingredients = new Set();
             recipes.forEach((recipe) => {
                 recipe.ingredients.forEach((current) =>
@@ -130,7 +129,7 @@ function refreshTags(recipes, category) {
             break;
 
         case "appliances":
-            appliancesContainer.innerHTML = "";
+            appliancesContainer.textContent = "";
             let appliances = new Set();
             recipes.forEach((recipe) => appliances.add(recipe.appliance));
 
@@ -141,7 +140,7 @@ function refreshTags(recipes, category) {
             break;
 
         case "ustensils":
-            ustensilsContainer.innerHTML = "";
+            ustensilsContainer.textContent = "";
             let ustensils = new Set();
             recipes.forEach((recipe) =>
                 recipe.ustensils.forEach((current) => ustensils.add(current))

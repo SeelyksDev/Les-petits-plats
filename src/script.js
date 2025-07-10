@@ -20,7 +20,7 @@ export function displayRecipes(recipes) {
     const numberRecipes = document.querySelector(".number-recipes");
     const recipesWrapper = document.querySelector(".recipes-wrapper");
 
-    recipesWrapper.innerHTML = "";
+    recipesWrapper.textContent = "";
 
     recipes.forEach((rec) => {
         const recipesTemplate = new Recipe(rec);

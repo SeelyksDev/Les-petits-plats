@@ -1,5 +1,3 @@
-// TagManager.js - Nouveau fichier pour gérer les filtres de manière centralisée
-
 import { displayRecipes } from "../script";
 
 const anchorsWrapper = document.querySelector(".tags-anchors-wrapper");
@@ -21,7 +19,6 @@ let anchorsTopIngredients = new Set();
 let anchorsTopAppliances = new Set();
 let anchorsTopUstensils = new Set();
 
-// Référence vers les recettes originales (sera définie depuis script.js)
 let originalRecipes = [];
 
 class TagManager {
@@ -49,7 +46,7 @@ class TagManager {
         switch (category) {
             case "ingredients":
                 anchorsTopIngredients.add(value);
-                anchorsTopIngredientsWrapper.innerHTML = "";
+                anchorsTopIngredientsWrapper.textContent = "";
                 this.createTopAnchors(
                     ingredientsContainer,
                     anchorsTopIngredients,
@@ -59,7 +56,7 @@ class TagManager {
                 break;
             case "appliances":
                 anchorsTopAppliances.add(value);
-                anchorsTopAppliancesWrapper.innerHTML = "";
+                anchorsTopAppliancesWrapper.textContent = "";
                 this.createTopAnchors(
                     appliancesContainer,
                     anchorsTopAppliances,
@@ -69,7 +66,7 @@ class TagManager {
                 break;
             case "ustensils":
                 anchorsTopUstensils.add(value);
-                anchorsTopUstensilsWrapper.innerHTML = "";
+                anchorsTopUstensilsWrapper.textContent = "";
                 this.createTopAnchors(
                     ustensilsContainer,
                     anchorsTopUstensils,
@@ -81,49 +78,47 @@ class TagManager {
     }
 
     static removeFromTopAnchors(value, category) {
-        switch (category) {
-            case "ingredients":
-                anchorsTopIngredients.delete(value);
-                anchorsTopIngredientsWrapper.innerHTML = "";
-                if (anchorsTopIngredients.size > 0) {
-                    this.createTopAnchors(
-                        ingredientsContainer,
-                        anchorsTopIngredients,
-                        anchorsTopIngredientsWrapper,
-                        "ingredients"
-                    );
-                }
-                break;
-            case "appliances":
-                anchorsTopAppliances.delete(value);
-                anchorsTopAppliancesWrapper.innerHTML = "";
-                if (anchorsTopAppliances.size > 0) {
-                    this.createTopAnchors(
-                        appliancesContainer,
-                        anchorsTopAppliances,
-                        anchorsTopAppliancesWrapper,
-                        "appliances"
-                    );
-                }
-                break;
-            case "ustensils":
-                anchorsTopUstensils.delete(value);
-                anchorsTopUstensilsWrapper.innerHTML = "";
-                if (anchorsTopUstensils.size > 0) {
-                    this.createTopAnchors(
-                        ustensilsContainer,
-                        anchorsTopUstensils,
-                        anchorsTopUstensilsWrapper,
-                        "ustensils"
-                    );
-                }
-                break;
-        }
+    switch (category) {
+        case "ingredients":
+            anchorsTopIngredients.delete(value);
+            anchorsTopIngredientsWrapper.textContent = "";
+            if (anchorsTopIngredients.size > 0) {
+                this.createTopAnchors(
+                    ingredientsContainer,
+                    anchorsTopIngredients,
+                    anchorsTopIngredientsWrapper,
+                    "ingredients"
+                );
+            }
+            break;
+        case "appliances":
+            anchorsTopAppliances.delete(value);
+            anchorsTopAppliancesWrapper.textContent = "";
+            if (anchorsTopAppliances.size > 0) {
+                this.createTopAnchors(
+                    appliancesContainer,
+                    anchorsTopAppliances,
+                    anchorsTopAppliancesWrapper,
+                    "appliances"
+                );
+            }
+            break;
+        case "ustensils":
+            anchorsTopUstensils.delete(value);
+            anchorsTopUstensilsWrapper.textContent = "";
+            if (anchorsTopUstensils.size > 0) {
+                this.createTopAnchors(
+                    ustensilsContainer,
+                    anchorsTopUstensils,
+                    anchorsTopUstensilsWrapper,
+                    "ustensils"
+                );
+            }
+            break;
     }
+}
 
     static applyAllFilters() {
-        console.log("Applying filters with anchors:", Array.from(anchorObject));
-        
         if (anchorObject.size === 0) {
             displayRecipes(originalRecipes);
             return;
@@ -132,80 +127,84 @@ class TagManager {
         let filteredRecipes = originalRecipes;
         const activeFilters = Array.from(anchorObject);
 
-        // Séparer les filtres par catégorie
         const ingredientFilters = activeFilters
-            .filter(filter => filter.category === "ingredients")
-            .map(filter => filter.tagName.toLowerCase());
-        
-        const applianceFilters = activeFilters
-            .filter(filter => filter.category === "appliances")
-            .map(filter => filter.tagName.toLowerCase());
-        
-        const ustensilFilters = activeFilters
-            .filter(filter => filter.category === "ustensils")
-            .map(filter => filter.tagName.toLowerCase());
+            .filter((filter) => filter.category === "ingredients")
+            .map((filter) => filter.tagName.toLowerCase());
 
-        // Appliquer les filtres d'ingrédients (ET logique)
+        const applianceFilters = activeFilters
+            .filter((filter) => filter.category === "appliances")
+            .map((filter) => filter.tagName.toLowerCase());
+
+        const ustensilFilters = activeFilters
+            .filter((filter) => filter.category === "ustensils")
+            .map((filter) => filter.tagName.toLowerCase());
+
         if (ingredientFilters.length > 0) {
-            filteredRecipes = filteredRecipes.filter(recipe => 
-                ingredientFilters.every(ingredient => 
-                    recipe.ingredients.some(recipeIngredient => 
-                        recipeIngredient.ingredient.toLowerCase() === ingredient
+            filteredRecipes = filteredRecipes.filter((recipe) =>
+                ingredientFilters.every((ingredient) =>
+                    recipe.ingredients.some(
+                        (recipeIngredient) =>
+                            recipeIngredient.ingredient.toLowerCase() ===
+                            ingredient
                     )
                 )
             );
         }
 
-        // Appliquer les filtres d'appareils
         if (applianceFilters.length > 0) {
-            filteredRecipes = filteredRecipes.filter(recipe => 
+            filteredRecipes = filteredRecipes.filter((recipe) =>
                 applianceFilters.includes(recipe.appliance.toLowerCase())
             );
         }
 
-        // Appliquer les filtres d'ustensiles (ET logique)
         if (ustensilFilters.length > 0) {
-            filteredRecipes = filteredRecipes.filter(recipe => 
-                ustensilFilters.every(ustensil => 
-                    recipe.ustensils.some(recipeUstensil => 
-                        recipeUstensil.toLowerCase() === ustensil
+            filteredRecipes = filteredRecipes.filter((recipe) =>
+                ustensilFilters.every((ustensil) =>
+                    recipe.ustensils.some(
+                        (recipeUstensil) =>
+                            recipeUstensil.toLowerCase() === ustensil
                     )
                 )
             );
         }
-
-        console.log("Filtered recipes:", filteredRecipes.length);
         displayRecipes(filteredRecipes);
     }
 
     static displayTagAnchor() {
         if (anchorObject.size === 0) {
             anchorsWrapper.classList.remove("display");
-            anchorsWrapper.innerHTML = "";
+            anchorsWrapper.textContent = "";
             return;
         }
 
         anchorsWrapper.classList.add("display");
-        anchorsWrapper.innerHTML = "";
-        
+        anchorsWrapper.textContent = "";
+
         anchorObject.forEach((anchor) => {
             let li = document.createElement("li");
             li.classList.add("tag-anchor");
             li.setAttribute("data-value", anchor.tagName);
             li.setAttribute("data-category", anchor.category);
-            li.innerHTML = `
-                <span class="anchor-text">${
-                    anchor.tagName[0].toUpperCase() +
-                    anchor.tagName.slice(1).toLowerCase()
-                }</span>
-                <button class="anchor-cross-btn">
-                    <img
-                        src="/assets/icons/cross.svg"
-                        alt="bouton croix"
-                    />
-                </button>
-            `;
+
+            const span = document.createElement("span");
+            span.classList.add("anchor-text");
+            span.textContent =
+                anchor.tagName[0].toUpperCase() +
+                anchor.tagName.slice(1).toLowerCase();
+
+            const button = document.createElement("button");
+            button.classList.add("anchor-cross-btn");
+
+            const img = document.createElement("img");
+            img.setAttribute("src", "/assets/icons/cross.svg");
+            img.setAttribute("alt", "bouton croix");
+
+            button.appendChild(img);
+            li.appendChild(span);
+            li.appendChild(button);
+
             anchorsWrapper.appendChild(li);
+
             this.handleCrossTagClick(li);
         });
     }
@@ -217,7 +216,6 @@ class TagManager {
 
         mainAnchorBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            console.log("Removing filter:", mainTagAnchorValue, mainTagAnchorCategory);
             this.removeFilter(mainTagAnchorValue, mainTagAnchorCategory);
         });
     }
@@ -240,13 +238,20 @@ class TagManager {
         return false;
     }
 
-    // Nouvelle méthode pour créer les ancres dans les listes avec gestion des clics
-    static createTopAnchors(category, anchorTopObject, anchorsWrapper, categoryName) {
-        let anchorTopArray = [...anchorTopObject]; 
+    static createTopAnchors(
+        category,
+        anchorTopObject,
+        anchorsWrapper,
+        categoryName
+    ) {
+        let anchorTopArray = [...anchorTopObject];
         category.insertAdjacentElement("beforebegin", anchorsWrapper);
 
         anchorTopArray.forEach((anchor) => {
-            const topAnchorElement = this.displayTagAnchorTop(anchor, categoryName);
+            const topAnchorElement = this.displayTagAnchorTop(
+                anchor,
+                categoryName
+            );
             anchorsWrapper.appendChild(topAnchorElement);
         });
     }
@@ -259,7 +264,8 @@ class TagManager {
         liTagAnchor.classList.add("tag-top-anchor");
         liTagAnchor.setAttribute("data-value", tagName);
         liTagAnchor.setAttribute("data-category", category);
-        liTagAnchor.textContent = tagName[0].toUpperCase() + tagName.slice(1).toLowerCase();
+        liTagAnchor.textContent =
+            tagName[0].toUpperCase() + tagName.slice(1).toLowerCase();
 
         crossBtnAnchor.classList.add("cross-top-anchor-btn");
         crossImg.setAttribute("src", "assets/icons/anchor-top-cross.svg");
@@ -269,21 +275,20 @@ class TagManager {
 
         liTagAnchor.appendChild(crossBtnAnchor);
 
-        // Ajouter l'événement de clic pour la synchronisation
         this.handleTopAnchorClick(liTagAnchor);
 
         return liTagAnchor;
     }
 
     static handleTopAnchorClick(topAnchorElement) {
-        const crossBtn = topAnchorElement.querySelector(".cross-top-anchor-btn");
+        const crossBtn = topAnchorElement.querySelector(
+            ".cross-top-anchor-btn"
+        );
         const value = topAnchorElement.dataset.value;
         const category = topAnchorElement.dataset.category;
 
         crossBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            console.log("Top anchor clicked:", value, category);
-            // Utiliser la même méthode de suppression que pour les main anchors
             this.removeFilter(value, category);
         });
     }

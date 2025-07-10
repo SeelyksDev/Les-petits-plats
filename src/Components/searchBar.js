@@ -21,7 +21,7 @@ export async function handleSearchBar() {
         );
 
         if (searchField.value.trim().length === 0) {
-            recipesWrapper.innerHTML = "";
+            recipesWrapper.textContent = "";
             displayRecipes(recipes);
         }
 
@@ -34,7 +34,7 @@ export async function handleSearchBar() {
         e.preventDefault();
         searchField.value = "";
         crossBtn.classList.remove("cross-visible");
-        recipesWrapper.innerHTML = "";
+        recipesWrapper.textContent = "";
         displayRecipes(recipes);
     });
 
@@ -73,14 +73,14 @@ export function filterByLetter(search, recipes) {
     if (filteredRecipes.length === 0) {
         displayNoContentMsg(search.value);
     } else {
-        recipesWrapper.innerHTML = "";
+        recipesWrapper.textContent = "";
         displayRecipes(filteredRecipes);
         getTags(filteredRecipes);
     }
 }
 
 function displayNoContentMsg(search) {
-    recipesWrapper.innerHTML = "";
+    recipesWrapper.textContent = "";
 
     const p = document.createElement("p");
     p.classList.add("no-content-msg");
@@ -97,8 +97,8 @@ export function getTags(recipes) {
     const ustensilsContainer = document.querySelector(".ustensils-list");
     const appliancesContainer = document.querySelector(".appliances-list");
     const list = document.querySelectorAll(".list");
-    
-    list.forEach(el => el.innerHTML = "");
+
+    list.forEach(el => el.textContent = "");
 
     let ingredients = new Set();
     let ustensils = new Set();
