@@ -12,8 +12,6 @@ export class Tag {
             const tagSearchInput =
                 listContainer.querySelector(".tag-search-input");
             const category = tagSearchInput.dataset.category;
-
-            console.log("Tag clicked:", value, category);
             TagManager.addFilter(value, category);
         });
     }

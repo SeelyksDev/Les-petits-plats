@@ -1,4 +1,4 @@
-import { displayRecipes } from "../script";
+import { displayRecipes } from "../script.js";
 
 const anchorsWrapper = document.querySelector(".tags-anchors-wrapper");
 const ingredientsContainer = document.querySelector(".ingredients-list");

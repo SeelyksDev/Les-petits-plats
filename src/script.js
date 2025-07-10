@@ -1,4 +1,4 @@
-import { Recipe } from "./Models/Recipe";
+import { Recipe } from "./Models/Recipe.js";
 import { handleSearchBar, getTags } from "./Components/searchBar";
 import { TagManager } from "./Models/TagManager";
 

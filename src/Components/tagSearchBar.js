@@ -1,4 +1,3 @@
-import { isValid } from "./searchBar";
 import { Tag } from "../Models/Tag";
 const ingredientsContainer = document.querySelector(".ingredients-list");
 const ustensilsContainer = document.querySelector(".ustensils-list");
