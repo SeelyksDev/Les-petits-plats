@@ -1,5 +1,6 @@
 import { Recipe } from "./Models/Recipe";
-import { handleSearchBar } from "./Components/searchBar";
+import { handleSearchBar, getTags } from "./Components/searchBar";
+import { TagManager } from "./Models/TagManager";
 
 export async function getRecipes() {
     try {
@@ -16,24 +17,30 @@ export async function getRecipes() {
     }
 }
 
- export function displayRecipes(recipes) {
+export function displayRecipes(recipes) {
     const numberRecipes = document.querySelector(".number-recipes");
     const recipesWrapper = document.querySelector(".recipes-wrapper");
+
+    recipesWrapper.textContent = "";
 
     recipes.forEach((rec) => {
         const recipesTemplate = new Recipe(rec);
         recipesWrapper.appendChild(recipesTemplate.getNewRecipeDOM());
     });
 
-    numberRecipes.textContent = `${recipes.length} recettes`;
+    numberRecipes.textContent = `${recipes.length
+        .toString()
+        .padStart(2, "0")} recettes`;
+    getTags(recipes);
 }
 
 async function init() {
     const recipes = await getRecipes();
+
+    TagManager.setOriginalRecipes(recipes);
+
     displayRecipes(recipes);
     handleSearchBar();
 }
 
 init();
-
-
