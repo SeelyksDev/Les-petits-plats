@@ -27,16 +27,17 @@ export function displayRecipes(recipes) {
         recipesWrapper.appendChild(recipesTemplate.getNewRecipeDOM());
     });
 
-    numberRecipes.textContent = `${recipes.length.toString().padStart(2, "0")} recettes`;
+    numberRecipes.textContent = `${recipes.length
+        .toString()
+        .padStart(2, "0")} recettes`;
     getTags(recipes);
 }
 
 async function init() {
     const recipes = await getRecipes();
-    
-    // Initialiser le gestionnaire de tags avec les recettes originales
+
     TagManager.setOriginalRecipes(recipes);
-    
+
     displayRecipes(recipes);
     handleSearchBar();
 }

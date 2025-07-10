@@ -42,7 +42,7 @@ export async function handleSearchBar() {
 }
 
 export function isValid(search) {
-    return search.value.trim().length >= 3;  
+    return search.value.trim().length >= 3;
 }
 
 export function filterByLetter(search, recipes) {
@@ -98,7 +98,7 @@ export function getTags(recipes) {
     const appliancesContainer = document.querySelector(".appliances-list");
     const list = document.querySelectorAll(".list");
 
-    list.forEach(el => el.textContent = "");
+    list.forEach((el) => (el.textContent = ""));
 
     let ingredients = new Set();
     let ustensils = new Set();

@@ -78,45 +78,45 @@ class TagManager {
     }
 
     static removeFromTopAnchors(value, category) {
-    switch (category) {
-        case "ingredients":
-            anchorsTopIngredients.delete(value);
-            anchorsTopIngredientsWrapper.textContent = "";
-            if (anchorsTopIngredients.size > 0) {
-                this.createTopAnchors(
-                    ingredientsContainer,
-                    anchorsTopIngredients,
-                    anchorsTopIngredientsWrapper,
-                    "ingredients"
-                );
-            }
-            break;
-        case "appliances":
-            anchorsTopAppliances.delete(value);
-            anchorsTopAppliancesWrapper.textContent = "";
-            if (anchorsTopAppliances.size > 0) {
-                this.createTopAnchors(
-                    appliancesContainer,
-                    anchorsTopAppliances,
-                    anchorsTopAppliancesWrapper,
-                    "appliances"
-                );
-            }
-            break;
-        case "ustensils":
-            anchorsTopUstensils.delete(value);
-            anchorsTopUstensilsWrapper.textContent = "";
-            if (anchorsTopUstensils.size > 0) {
-                this.createTopAnchors(
-                    ustensilsContainer,
-                    anchorsTopUstensils,
-                    anchorsTopUstensilsWrapper,
-                    "ustensils"
-                );
-            }
-            break;
+        switch (category) {
+            case "ingredients":
+                anchorsTopIngredients.delete(value);
+                anchorsTopIngredientsWrapper.textContent = "";
+                if (anchorsTopIngredients.size > 0) {
+                    this.createTopAnchors(
+                        ingredientsContainer,
+                        anchorsTopIngredients,
+                        anchorsTopIngredientsWrapper,
+                        "ingredients"
+                    );
+                }
+                break;
+            case "appliances":
+                anchorsTopAppliances.delete(value);
+                anchorsTopAppliancesWrapper.textContent = "";
+                if (anchorsTopAppliances.size > 0) {
+                    this.createTopAnchors(
+                        appliancesContainer,
+                        anchorsTopAppliances,
+                        anchorsTopAppliancesWrapper,
+                        "appliances"
+                    );
+                }
+                break;
+            case "ustensils":
+                anchorsTopUstensils.delete(value);
+                anchorsTopUstensilsWrapper.textContent = "";
+                if (anchorsTopUstensils.size > 0) {
+                    this.createTopAnchors(
+                        ustensilsContainer,
+                        anchorsTopUstensils,
+                        anchorsTopUstensilsWrapper,
+                        "ustensils"
+                    );
+                }
+                break;
+        }
     }
-}
 
     static applyAllFilters() {
         if (anchorObject.size === 0) {

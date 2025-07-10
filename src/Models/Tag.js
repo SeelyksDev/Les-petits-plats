@@ -9,7 +9,8 @@ export class Tag {
         tag.addEventListener("click", () => {
             const value = tag.dataset.value;
             const listContainer = tag.closest(".dropdown-content");
-            const tagSearchInput = listContainer.querySelector(".tag-search-input");
+            const tagSearchInput =
+                listContainer.querySelector(".tag-search-input");
             const category = tagSearchInput.dataset.category;
 
             console.log("Tag clicked:", value, category);
@@ -20,7 +21,8 @@ export class Tag {
     displayTag() {
         const li = document.createElement("li");
         li.setAttribute("data-value", this.value);
-        li.textContent = this.value[0].toUpperCase() + this.value.slice(1).toLowerCase();
+        li.textContent =
+            this.value[0].toUpperCase() + this.value.slice(1).toLowerCase();
         this.handleTagClick(li);
         return li;
     }
